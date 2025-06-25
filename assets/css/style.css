@@ -25,31 +25,39 @@ body {
     color: var(--text-primary);
     overflow-x: hidden;
     line-height: 1.6;
-    cursor: none;
 }
 
-/* CUSTOM CURSOR */
+/* CUSTOM CURSOR - OPZIONALE */
 .cursor {
     position: fixed;
-    width: 20px;
-    height: 20px;
-    background: radial-gradient(circle, #6366f1, transparent);
+    width: 8px;
+    height: 8px;
+    background: rgba(99, 102, 241, 0.8);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
-    mix-blend-mode: difference;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease;
+    display: none; /* Nascosto di default per evitare problemi */
 }
 
 .cursor-follower {
     position: fixed;
-    width: 40px;
-    height: 40px;
-    border: 2px solid rgba(99, 102, 241, 0.3);
+    width: 30px;
+    height: 30px;
+    border: 1px solid rgba(99, 102, 241, 0.3);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9998;
     transition: all 0.3s ease;
+    display: none; /* Nascosto di default */
+}
+
+/* Attiva cursore custom solo su desktop */
+@media (min-width: 1024px) {
+    .cursor,
+    .cursor-follower {
+        display: block;
+    }
 }
 
 /* PARTICLES SYSTEM */
@@ -1213,6 +1221,10 @@ body {
     .section-title {
         font-size: 3rem;
     }
+    
+    .hero-content {
+        gap: 4rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1221,6 +1233,7 @@ body {
         flex-direction: column;
         cursor: pointer;
         padding: 10px;
+        z-index: 1001;
     }
     
     .hamburger span {
@@ -1254,11 +1267,16 @@ body {
     
     .nav-container {
         justify-content: space-between;
+        padding: 10px 20px;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
     }
     
     .nav-menu {
         position: fixed;
-        top: 80px;
+        top: 70px;
         left: 10px;
         right: 10px;
         background: rgba(10, 10, 10, 0.95);
@@ -1274,6 +1292,7 @@ body {
         opacity: 0;
         transition: all 0.3s ease;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        z-index: 1000;
     }
     
     .nav-menu.active {
@@ -1285,15 +1304,17 @@ body {
         grid-template-columns: 1fr;
         gap: 3rem;
         text-align: center;
+        padding-top: 2rem;
     }
     
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
     }
     
     .hero-buttons {
         justify-content: center;
         flex-wrap: wrap;
+        gap: 1rem;
     }
     
     .contact-content {
@@ -1310,30 +1331,64 @@ body {
     .services-grid,
     .portfolio-grid {
         grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .code-window {
+        transform: none;
+    }
+    
+    .code-window:hover {
+        transform: scale(1.02);
     }
 }
 
 @media (max-width: 480px) {
     .hero-title {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
     
     .section-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
     
     .btn {
-        padding: 1rem 2rem;
-        font-size: 1rem;
+        padding: 1rem 1.8rem;
+        font-size: 0.95rem;
     }
     
     .service-card,
     .glass-form {
-        padding: 2rem;
+        padding: 2rem 1.5rem;
     }
     
     .particles-container {
         display: none;
+    }
+    
+    .navbar {
+        top: 5px;
+        left: 5px;
+        right: 5px;
+    }
+    
+    .nav-container {
+        padding: 8px 15px;
+    }
+    
+    .nav-menu {
+        top: 60px;
+        left: 5px;
+        right: 5px;
+        padding: 1.5rem;
+    }
+    
+    .hero-content {
+        padding-top: 1rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
     }
 }
 
