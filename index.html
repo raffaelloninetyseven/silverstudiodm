@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SilverStudio - Programmazione Software</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="background-animation">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
+        <div class="floating-shape shape-5"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">Silver</span><span class="logo-accent">Studio</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#servizi">Servizi</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contatti">Contatti</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="title-line">Trasformiamo le tue</span>
+                    <span class="title-line accent">Idee in Codice</span>
+                </h1>
+                <p class="hero-subtitle">Sviluppo software su misura con tecnologie all'avanguardia</p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary">
+                        <span>Inizia Progetto</span>
+                        <i class="fas fa-rocket"></i>
+                    </button>
+                    <button class="btn btn-secondary">
+                        <span>Scopri di Più</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="code-window">
+                    <div class="window-header">
+                        <div class="window-controls">
+                            <span class="control red"></span>
+                            <span class="control yellow"></span>
+                            <span class="control green"></span>
+                        </div>
+                        <span class="window-title">silverstudio.js</span>
+                    </div>
+                    <div class="code-content">
+                        <div class="code-line"><span class="keyword">const</span> <span class="variable">magic</span> = <span class="string">"happens here"</span>;</div>
+                        <div class="code-line"><span class="keyword">function</span> <span class="function">createAmazing</span>() {</div>
+                        <div class="code-line">  <span class="keyword">return</span> <span class="string">"innovative solutions"</span>;</div>
+                        <div class="code-line">}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" class="services">
+        <div class="container">
+            <h2 class="section-title">I Nostri Servizi</h2>
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Sviluppo Web</h3>
+                    <p>Applicazioni web moderne e responsive con le ultime tecnologie frontend e backend.</p>
+                    <div class="service-tech">
+                        <span>React</span>
+                        <span>Node.js</span>
+                        <span>TypeScript</span>
+                    </div>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>App Mobile</h3>
+                    <p>Applicazioni native e cross-platform per iOS e Android con UX eccezionale.</p>
+                    <div class="service-tech">
+                        <span>React Native</span>
+                        <span>Flutter</span>
+                        <span>Swift</span>
+                    </div>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Solutions</h3>
+                    <p>Architetture scalabili e sicure su AWS, Azure e Google Cloud Platform.</p>
+                    <div class="service-tech">
+                        <span>AWS</span>
+                        <span>Docker</span>
+                        <span>Kubernetes</span>
+                    </div>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI & Machine Learning</h3>
+                    <p>Soluzioni intelligenti con algoritmi di ML e integrazione di AI avanzata.</p>
+                    <div class="service-tech">
+                        <span>Python</span>
+                        <span>TensorFlow</span>
+                        <span>OpenAI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Portfolio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-aos="zoom-in">
+                    <div class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <h4>E-Commerce Platform</h4>
+                            <p>Piattaforma completa con dashboard admin</p>
+                            <button class="portfolio-btn">
+                                <i class="fas fa-external-link-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <h4>FinTech App</h4>
+                            <p>App mobile per gestione finanziaria</p>
+                            <button class="portfolio-btn">
+                                <i class="fas fa-external-link-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="portfolio-image">
+                        <div class="portfolio-overlay">
+                            <h4>AI Analytics</h4>
+                            <p>Dashboard intelligente per analytics</p>
+                            <button class="portfolio-btn">
+                                <i class="fas fa-external-link-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Parliamo del tuo progetto</h2>
+                    <p>Sono Raffaello Silvestri, fondatore di SilverStudio. Trasformo idee innovative in soluzioni software concrete.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@silverstudio.dev</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+39 123 456 7890</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Italia</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form class="glass-form">
+                        <div class="form-group">
+                            <input type="text" id="name" required>
+                            <label for="name">Nome</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" required>
+                            <label for="email">Email</label>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" rows="5" required></textarea>
+                            <label for="message">Messaggio</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <span>Invia Messaggio</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-text">Silver</span><span class="logo-accent">Studio</span>
+                    <p>Innovazione. Qualità. Risultati.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Servizi</h4>
+                        <a href="#">Sviluppo Web</a>
+                        <a href="#">App Mobile</a>
+                        <a href="#">Cloud Solutions</a>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Azienda</h4>
+                        <a href="#">Chi Siamo</a>
+                        <a href="#">Portfolio</a>
+                        <a href="#">Blog</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SilverStudio. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
