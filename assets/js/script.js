@@ -859,27 +859,7 @@ window.addEventListener('load', () => {
 
 // Initialize everything when page loads
 window.addEventListener('DOMContentLoaded', () => {
-    console.log(`
-    ╔══════════════════════════════════════════════════════╗
-    ║                  🚀 SILVERSTUDIO 🚀                  ║
-    ║                                                      ║
-    ║            Dimostrazione di Stile Estrema           ║
-    ║                                                      ║
-    ║  • Cursore personalizzato ✓ (solo desktop)          ║
-    ║  • Sistema di particelle ✓                          ║
-    ║  • Effetti 3D avanzati ✓                           ║
-    ║  • Animazioni fluide ✓                             ║
-    ║  • Easter egg nascosti ✓                           ║
-    ║  • Form funzionante ✓                              ║
-    ║                                                      ║
-    ║  Prova il Konami Code: ↑↑↓↓←→←→BA                   ║
-    ║                                                      ║
-    ║  SETUP FORM:                                         ║
-    ║  1. Registrati su formspree.io                      ║
-    ║  2. Sostituisci YOUR_FORM_ID nel codice             ║
-    ║  3. I dati vengono salvati localmente come backup   ║
-    ╚══════════════════════════════════════════════════════╝
-    `);
+    console.log(`Prova il Konami Code: ↑↑↓↓←→←→BA`);
     
     // Log submissions salvate localmente
     const localSubmissions = JSON.parse(localStorage.getItem('silverstudio_submissions') || '[]');
