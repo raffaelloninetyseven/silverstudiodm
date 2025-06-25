@@ -309,6 +309,9 @@ body {
 .title-line.accent {
     background: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4, #f093fb);
     background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     animation: title-reveal 1.5s ease forwards 0.6s, gradient-shift 3s ease-in-out infinite;
 }
 
@@ -480,13 +483,14 @@ body {
 .code-line::before {
     content: '';
     position: absolute;
-    left: -20px;
+    left: -25px;
     top: 0;
     bottom: 0;
-    width: 3px;
+    width: 2px;
     background: linear-gradient(135deg, #6366f1, #8b5cf6);
     opacity: 0;
     animation: line-highlight 0.5s ease forwards;
+    border-radius: 1px;
 }
 
 .code-line:nth-child(1) { animation-delay: 2s; }
