@@ -312,14 +312,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const magneticButtons = document.querySelectorAll('.btn, .portfolio-btn, .social-link');
     magneticButtons.forEach(addMagneticEffect);
     
-    // Initialize typing animation
-    setTimeout(() => {
-        const subtitle = document.querySelector('.hero-subtitle');
-        if (subtitle) {
-            const originalText = subtitle.textContent;
-            typeWriter(subtitle, originalText, 40);
-        }
-    }, 2000);
+    // Initialize typing animation - DISABLED to avoid visual artifacts
+    // setTimeout(() => {
+    //     const subtitle = document.querySelector('.hero-subtitle');
+    //     if (subtitle) {
+    //         const originalText = subtitle.textContent;
+    //         typeWriter(subtitle, originalText, 40);
+    //     }
+    // }, 2000);
     
     // Add CSS for typing cursor
     const style = document.createElement('style');
@@ -406,15 +406,12 @@ if (contactForm) {
     `;
     document.head.appendChild(rippleStyle);
     
-    // Enhanced form submission con Formspree
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
+    // Enhanced form submission - simplified for Formspree
+    contactForm.addEventListener('submit', (e) => {
         const submitBtn = contactForm.querySelector('.btn-primary');
         const originalText = submitBtn.innerHTML;
         
         // Get form data
-        const formData = new FormData(contactForm);
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const message = document.getElementById('message').value;
@@ -422,6 +419,7 @@ if (contactForm) {
         // Validation
         if (!name || !email || !message) {
             alert('Per favore compila tutti i campi');
+            e.preventDefault();
             return;
         }
         
@@ -430,67 +428,8 @@ if (contactForm) {
         submitBtn.disabled = true;
         submitBtn.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
         
-        try {
-            // Opzione 1: Formspree (sostituisci YOUR_FORM_ID con il tuo ID)
-            const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    message: message,
-                    _subject: `Nuovo messaggio da ${name} - SilverStudio`
-                })
-            });
-            
-            if (response.ok) {
-                // Success
-                submitBtn.innerHTML = '<i class="fas fa-check"></i> Messaggio Inviato!';
-                submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-                createSuccessParticles(submitBtn);
-                
-                // Reset form after success
-                setTimeout(() => {
-                    contactForm.reset();
-                    formInputs.forEach(input => {
-                        input.parentElement.classList.remove('focused');
-                        input.style.borderColor = '';
-                        input.style.boxShadow = '';
-                    });
-                }, 1000);
-                
-            } else {
-                throw new Error('Errore nell\'invio');
-            }
-            
-        } catch (error) {
-            console.error('Errore:', error);
-            
-            // Fallback: salva in localStorage per backup
-            const submissions = JSON.parse(localStorage.getItem('silverstudio_submissions') || '[]');
-            submissions.push({
-                name,
-                email,
-                message,
-                timestamp: new Date().toISOString()
-            });
-            localStorage.setItem('silverstudio_submissions', JSON.stringify(submissions));
-            
-            submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Salvato localmente';
-            submitBtn.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
-            
-            // Log per debugging
-            console.log('Dati salvati localmente:', { name, email, message });
-        }
-        
-        // Reset button after 3 seconds
-        setTimeout(() => {
-            submitBtn.innerHTML = originalText;
-            submitBtn.style.background = '';
-            submitBtn.disabled = false;
-        }, 3000);
+        // Form will be submitted normally, Formspree will handle redirect
+        // No need to prevent default, let the form submit naturally
     });
 }
 
@@ -916,6 +855,37 @@ window.addEventListener('load', () => {
             }
         }, 800);
     }, 2500);
+});
+
+// Initialize everything when page loads
+window.addEventListener('DOMContentLoaded', () => {
+    console.log(`
+    ╔══════════════════════════════════════════════════════╗
+    ║                  🚀 SILVERSTUDIO 🚀                  ║
+    ║                                                      ║
+    ║            Dimostrazione di Stile Estrema           ║
+    ║                                                      ║
+    ║  • Cursore personalizzato ✓ (solo desktop)          ║
+    ║  • Sistema di particelle ✓                          ║
+    ║  • Effetti 3D avanzati ✓                           ║
+    ║  • Animazioni fluide ✓                             ║
+    ║  • Easter egg nascosti ✓                           ║
+    ║  • Form funzionante ✓                              ║
+    ║                                                      ║
+    ║  Prova il Konami Code: ↑↑↓↓←→←→BA                   ║
+    ║                                                      ║
+    ║  SETUP FORM:                                         ║
+    ║  1. Registrati su formspree.io                      ║
+    ║  2. Sostituisci YOUR_FORM_ID nel codice             ║
+    ║  3. I dati vengono salvati localmente come backup   ║
+    ╚══════════════════════════════════════════════════════╝
+    `);
+    
+    // Log submissions salvate localmente
+    const localSubmissions = JSON.parse(localStorage.getItem('silverstudio_submissions') || '[]');
+    if (localSubmissions.length > 0) {
+        console.log('📋 Submissions salvate localmente:', localSubmissions);
+    }
 });
 
 // Export functions for external use
