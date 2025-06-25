@@ -1,4 +1,4 @@
-// CUSTOM CURSOR SYSTEM
+// CUSTOM CURSOR SYSTEM - SOLO DESKTOP
 let mouseX = 0;
 let mouseY = 0;
 let cursorX = 0;
@@ -6,50 +6,53 @@ let cursorY = 0;
 let followerX = 0;
 let followerY = 0;
 
-// Create custom cursor elements
+// Create custom cursor elements solo su desktop
 document.addEventListener('DOMContentLoaded', () => {
-    const cursor = document.createElement('div');
-    cursor.className = 'cursor';
-    document.body.appendChild(cursor);
+    // Solo su dispositivi desktop
+    if (window.innerWidth >= 1024) {
+        const cursor = document.createElement('div');
+        cursor.className = 'cursor';
+        document.body.appendChild(cursor);
 
-    const follower = document.createElement('div');
-    follower.className = 'cursor-follower';
-    document.body.appendChild(follower);
+        const follower = document.createElement('div');
+        follower.className = 'cursor-follower';
+        document.body.appendChild(follower);
 
-    // Update mouse position
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
+        // Update mouse position
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
 
-    // Animate cursors
-    function animateCursor() {
-        cursorX += (mouseX - cursorX) * 0.3;
-        cursorY += (mouseY - cursorY) * 0.3;
-        followerX += (mouseX - followerX) * 0.1;
-        followerY += (mouseY - followerY) * 0.1;
+        // Animate cursors
+        function animateCursor() {
+            cursorX += (mouseX - cursorX) * 0.3;
+            cursorY += (mouseY - cursorY) * 0.3;
+            followerX += (mouseX - followerX) * 0.1;
+            followerY += (mouseY - followerY) * 0.1;
 
-        cursor.style.left = cursorX + 'px';
-        cursor.style.top = cursorY + 'px';
-        follower.style.left = followerX + 'px';
-        follower.style.top = followerY + 'px';
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            follower.style.left = followerX + 'px';
+            follower.style.top = followerY + 'px';
 
-        requestAnimationFrame(animateCursor);
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Cursor interactions
+        const interactiveElements = document.querySelectorAll('a, button, .service-card, .portfolio-item');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+                follower.style.transform = 'scale(1.5)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                follower.style.transform = 'scale(1)';
+            });
+        });
     }
-    animateCursor();
-
-    // Cursor interactions
-    const interactiveElements = document.querySelectorAll('a, button, .service-card, .portfolio-item');
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.style.transform = 'scale(2)';
-            follower.style.transform = 'scale(2)';
-        });
-        el.addEventListener('mouseleave', () => {
-            cursor.style.transform = 'scale(1)';
-            follower.style.transform = 'scale(1)';
-        });
-    });
 });
 
 // PARTICLES SYSTEM
@@ -403,40 +406,91 @@ if (contactForm) {
     `;
     document.head.appendChild(rippleStyle);
     
-    // Enhanced form submission
-    contactForm.addEventListener('submit', (e) => {
+    // Enhanced form submission con Formspree
+    contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         const submitBtn = contactForm.querySelector('.btn-primary');
         const originalText = submitBtn.innerHTML;
         
-        // Success animation
+        // Get form data
+        const formData = new FormData(contactForm);
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+        
+        // Validation
+        if (!name || !email || !message) {
+            alert('Per favore compila tutti i campi');
+            return;
+        }
+        
+        // Loading animation
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Invio in corso...';
         submitBtn.disabled = true;
         submitBtn.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
         
-        // Simulate form submission with enhanced feedback
-        setTimeout(() => {
-            submitBtn.innerHTML = '<i class="fas fa-check"></i> Messaggio Inviato!';
-            submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+        try {
+            // Opzione 1: Formspree (sostituisci YOUR_FORM_ID con il tuo ID)
+            const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    message: message,
+                    _subject: `Nuovo messaggio da ${name} - SilverStudio`
+                })
+            });
             
-            // Add success particle effect
-            createSuccessParticles(submitBtn);
-            
-            setTimeout(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.style.background = '';
-                submitBtn.disabled = false;
-                contactForm.reset();
+            if (response.ok) {
+                // Success
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Messaggio Inviato!';
+                submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                createSuccessParticles(submitBtn);
                 
-                // Reset form field styles
-                formInputs.forEach(input => {
-                    input.parentElement.classList.remove('focused');
-                    input.style.borderColor = '';
-                    input.style.boxShadow = '';
-                });
-            }, 3000);
-        }, 2500);
+                // Reset form after success
+                setTimeout(() => {
+                    contactForm.reset();
+                    formInputs.forEach(input => {
+                        input.parentElement.classList.remove('focused');
+                        input.style.borderColor = '';
+                        input.style.boxShadow = '';
+                    });
+                }, 1000);
+                
+            } else {
+                throw new Error('Errore nell\'invio');
+            }
+            
+        } catch (error) {
+            console.error('Errore:', error);
+            
+            // Fallback: salva in localStorage per backup
+            const submissions = JSON.parse(localStorage.getItem('silverstudio_submissions') || '[]');
+            submissions.push({
+                name,
+                email,
+                message,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem('silverstudio_submissions', JSON.stringify(submissions));
+            
+            submitBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Salvato localmente';
+            submitBtn.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
+            
+            // Log per debugging
+            console.log('Dati salvati localmente:', { name, email, message });
+        }
+        
+        // Reset button after 3 seconds
+        setTimeout(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.style.background = '';
+            submitBtn.disabled = false;
+        }, 3000);
     });
 }
 
@@ -862,8 +916,6 @@ window.addEventListener('load', () => {
             }
         }, 800);
     }, 2500);
-});
-
 });
 
 // Export functions for external use
